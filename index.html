@@ -3,7 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
     <title>myLibrary</title>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1>myLibrary</h1>
+      <button id="login">Log-in</button>
+    </header>
+    <dialog id="addBookDialog">
+      <form method="dialog">
+        <div class="label">
+          <p>
+            <label for="title"
+              >Title
+              <input type="text" name="title" id="title" />
+            </label>
+            <label for="author">
+              Author
+              <input type="text" name="author" id="author" />
+            </label>
+            <label for="pages">
+              Pages
+              <input type="number" name="pages" id="pages" />
+            </label>
+            <label for="read">
+              Read
+              <input type="checkbox" name="read" id="read" />
+            </label>
+          </p>
+        </div>
+        <div>
+          <input type="submit" id="saveBook" value="Save Book" />
+        </div>
+      </form>
+    </dialog>
+    <button id="addBookBtn">Add Book</button>
+    <div id="bookList"></div>
+  </body>
 </html>

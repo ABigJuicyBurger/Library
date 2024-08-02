@@ -1,4 +1,7 @@
 const myLibrary = ["Example Book 1", "Example Book 2"];
+const addBookBtn = document.querySelector("#addBookBtn");
+const dialog = document.querySelector("#addBookDialog");
+const saveBook = document.querySelector("#saveBook");
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -22,7 +25,7 @@ function addBookToLibrary(book) {
 
 // TODO 2: write a function that loops through array and displays each book on the page
 function displayBooks() {
-  const bookList = document.querySelector("#book-list");
+  const bookList = document.querySelector("#bookList");
   bookList.textContent = "";
   myLibrary.forEach((book) => {
     const bookCard = document.createElement("div");
@@ -31,3 +34,8 @@ function displayBooks() {
     bookList.appendChild(bookCard);
   });
 }
+
+// TODO 3: Use the addBook button in HTML to bring up a form allowing user to input details of book: title, author, pages and whether it's been read using dialog box
+addBookBtn.addEventListener("click", () => {
+  dialog.showModal();
+});
