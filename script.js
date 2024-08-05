@@ -45,6 +45,8 @@ function Book(title, author, pages, read) {
     bookCard.appendChild(pagesP);
     bookCard.appendChild(readP);
 
+    this.bookCard = bookCard;
+
     container.appendChild(bookCard);
   };
 
