@@ -1,0 +1,12 @@
+#bookList {
+  display: flex;
+}
+
+.book-card {
+  border: 1px solid black;
+  padding: 30px;
+  margin: 10px;
+  width: 200px;
+  border-radius: 1em;
+  text-align: center;
+}
