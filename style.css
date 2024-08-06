@@ -18,14 +18,35 @@ main {
   justify-content: center;
 }
 
+header, footer {
+  background-color: #5DADE2;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
 header {
   display: flex;
   justify-content: space-between;
-  background-color: #3498db;
   color: white;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(5px);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px); opacity: 0;
+  }
+  to {
+    transform: translateY(0); opacity: 1;
+  }
+}
+
+dialog[open] {
+  animation: slideIn 0.3 ease-out;
 }
 
 .book-card {
@@ -41,7 +62,7 @@ header {
   box-shadow: 0 25px 10px rgba(41, 111, 23, 0.1)
 }
 
-.book-card hover {
+.book-card :hover {
   transform: translateY(-5px);
 }
 
@@ -70,7 +91,6 @@ button:hover {
 }
 
 footer {
-  background-color: #3498db;
   color: white;
   padding: 20px;
   text-align: center;
