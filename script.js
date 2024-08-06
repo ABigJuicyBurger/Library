@@ -42,13 +42,14 @@ function Book(title, author, pages, read) {
     readP.textContent = `Read: ${this.read ? "Yes" : "No"}`;
 
     readP.addEventListener("click", () => {
-      this.read = !this.read;
-      readP.textContent = `Read: ${this.read ? "Yes" : "No"}`;
+      const newReadStatus = this.toggleRead();
+      readP.textContent = `Read: ${newReadStatus ? "Yes" : "No"}`;
       readP.classList.toggle("read-button");
+
     });
 
     bookCard.appendChild(titleP);
-    bookCard.appendChild(authorP);
+    bookCard.appendChild(authorP);  
     bookCard.appendChild(pagesP);
     bookCard.appendChild(readP);
 
@@ -63,6 +64,11 @@ function Book(title, author, pages, read) {
 Book.prototype.setIndex = function (index) {
   this.bookCard.dataset.index = index;
 };
+
+Book.prototype.toggleRead = function () {
+  this.read = !this.read;
+  return  this.read;
+}
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
