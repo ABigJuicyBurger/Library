@@ -1,14 +1,47 @@
+body {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 20px;
+}
+
 #bookList {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #3498db;
+  color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .book-card {
-  border: 1px solid black;
-  padding: 30px;
+  display: flex;
+  flex-direction: column ;
+  border: none;
+  padding: 20px;
   margin: 10px;
   width: 200px;
-  border-radius: 1em;
+  border-radius: 10px;
   text-align: center;
+  background-color: white;
+  box-shadow: 0 25px 10px rgba(41, 111, 23, 0.1)
+}
+
+.book-card hover {
+  transform: translateY(-5px);
+}
+
+button {
+  margin: 5px;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .read-button {
