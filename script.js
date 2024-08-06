@@ -1,7 +1,6 @@
 const myLibrary = [];
 
 const addBookBtn = document.querySelector("#addBookBtn");
-removeBookBtn = document.querySelector("#removeBookBtn");
 const dialog = document.querySelector("#showBookDialog");
 const bookList = document.querySelector("#bookList");
 
@@ -11,7 +10,6 @@ const bookPages = document.querySelector("#pages");
 const bookRead = document.querySelector("#read");
 
 const saveBook = document.querySelector("#saveBook");
-
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -49,15 +47,24 @@ function Book(title, author, pages, read) {
       readP.classList.toggle("read-button");
     });
 
-    const removeButton = document.createElement("button");
-    removeButton.textContent = "Remove";
-    removeButton.classList.add("remove-button");
+    const removeBookBtn = document.createElement("button");
+    removeBookBtn.classList.add("remove-button");
+    removeBookBtn.textContent = "Remove";
+
+    removeBookBtn.addEventListener("click", () => {
+      if (bookCard) {
+        const index = bookCard.dataset.index;
+        myLibrary.splice(index, 1);
+        container.remove;
+        displayBooks();
+      }
+    });
 
     bookCard.appendChild(titleP);
     bookCard.appendChild(authorP);
     bookCard.appendChild(pagesP);
     bookCard.appendChild(readP);
-    bookCard.appendChild(removeButton);
+    bookCard.appendChild(removeBookBtn);
 
     this.bookCard = bookCard;
 
@@ -98,25 +105,6 @@ saveBook.addEventListener("click", (e) => {
   dialog.close();
   resetDialogFields();
 });
-
-function isthereBookCard() {
-  const bookCard = document.querySelector(".book-card");
-  if (!bookCard) {
-    removeBookBtn.style.display = "none";
-    return false;
-  }
-
-}
-
-removeBookBtn.addEventListener("click", () => {
-  if (bookCard) {
-    const index = bookCard.dataset.index;
-    myLibrary.splice(index, 1);
-    bookCard.remove();
-    displayBooks();
-  }
-});
-
 
 function displayBooks() {
   bookList.textContent = "";
