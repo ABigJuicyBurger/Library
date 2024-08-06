@@ -37,8 +37,15 @@ function Book(title, author, pages, read) {
     const pagesP = document.createElement("p");
     pagesP.textContent = `Pages: ${this.pages}`;
 
-    const readP = document.createElement("p");
+    const readP = document.createElement("button");
+    readP.classList.add("read-button");
     readP.textContent = `Read: ${this.read ? "Yes" : "No"}`;
+
+    readP.addEventListener("click", () => {
+      this.read = !this.read;
+      readP.textContent = `Read: ${this.read ? "Yes" : "No"}`;
+      readP.classList.toggle("read-button");
+    });
 
     bookCard.appendChild(titleP);
     bookCard.appendChild(authorP);

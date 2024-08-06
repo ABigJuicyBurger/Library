@@ -10,3 +10,8 @@
   border-radius: 1em;
   text-align: center;
 }
+
+.read-button {
+  background-color: forestgreen;
+  color: white;
+}
