@@ -1,6 +1,7 @@
 const myLibrary = [];
 
 const addBookBtn = document.querySelector("#addBookBtn");
+removeBookBtn = document.querySelector("#removeBookBtn");
 const dialog = document.querySelector("#showBookDialog");
 const bookList = document.querySelector("#bookList");
 
@@ -10,6 +11,7 @@ const bookPages = document.querySelector("#pages");
 const bookRead = document.querySelector("#read");
 
 const saveBook = document.querySelector("#saveBook");
+
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -45,13 +47,17 @@ function Book(title, author, pages, read) {
       const newReadStatus = this.toggleRead();
       readP.textContent = `Read: ${newReadStatus ? "Yes" : "No"}`;
       readP.classList.toggle("read-button");
-
     });
 
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove";
+    removeButton.classList.add("remove-button");
+
     bookCard.appendChild(titleP);
-    bookCard.appendChild(authorP);  
+    bookCard.appendChild(authorP);
     bookCard.appendChild(pagesP);
     bookCard.appendChild(readP);
+    bookCard.appendChild(removeButton);
 
     this.bookCard = bookCard;
 
@@ -67,8 +73,8 @@ Book.prototype.setIndex = function (index) {
 
 Book.prototype.toggleRead = function () {
   this.read = !this.read;
-  return  this.read;
-}
+  return this.read;
+};
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -92,6 +98,25 @@ saveBook.addEventListener("click", (e) => {
   dialog.close();
   resetDialogFields();
 });
+
+function isthereBookCard() {
+  const bookCard = document.querySelector(".book-card");
+  if (!bookCard) {
+    removeBookBtn.style.display = "none";
+    return false;
+  }
+
+}
+
+removeBookBtn.addEventListener("click", () => {
+  if (bookCard) {
+    const index = bookCard.dataset.index;
+    myLibrary.splice(index, 1);
+    bookCard.remove();
+    displayBooks();
+  }
+});
+
 
 function displayBooks() {
   bookList.textContent = "";
