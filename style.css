@@ -49,6 +49,28 @@ dialog[open] {
   animation: slideIn 0.3 ease-out;
 }
 
+dialog input {
+  border: none;
+  border-bottom: 2px solid #3498db;
+  padding: 10px;
+  margin: 10px 0;
+  transition: border-color 3.3s;
+}
+
+dialog input:focus {
+  outline: none;
+  border-color: #2ecc71;
+}
+
+dialog {
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+#saveBook {
+  cursor: pointer;
+}
+
 .book-card {
   display: flex;
   flex-direction: column ;
