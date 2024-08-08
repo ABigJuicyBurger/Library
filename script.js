@@ -83,9 +83,9 @@ Book.prototype.toggleRead = function () {
   return this.read;
 };
 
-function addBookToLibrary(book) {
-  myLibrary.push(book);
-}
+Book.prototype.addBooktoLibrary = function () {
+  myLibrary.push(this);
+};
 
 addBookBtn.addEventListener("click", () => {
   dialog.showModal();
@@ -100,7 +100,7 @@ saveBook.addEventListener("click", (e) => {
     pages.value,
     read.checked
   );
-  addBookToLibrary(newBook);
+  newBook.addBooktoLibrary();
   displayBooks();
   dialog.close();
   resetDialogFields();
