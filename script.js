@@ -74,6 +74,12 @@ function Book(title, author, pages, read) {
   console.log(this.info());
 }
 
+// Book.prototype.display = function (container)
+
+Book.prototype.addBooktoLibrary = function () {
+  myLibrary.push(this);
+};
+
 Book.prototype.setIndex = function (index) {
   this.bookCard.dataset.index = index;
 };
@@ -81,10 +87,6 @@ Book.prototype.setIndex = function (index) {
 Book.prototype.toggleRead = function () {
   this.read = !this.read;
   return this.read;
-};
-
-Book.prototype.addBooktoLibrary = function () {
-  myLibrary.push(this);
 };
 
 addBookBtn.addEventListener("click", () => {
