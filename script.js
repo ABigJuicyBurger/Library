@@ -1,6 +1,7 @@
 const myLibrary = [];
 
 // Added comment to create pull request
+// Added comment to continue pull request
 
 const addBookBtn = document.querySelector("#addBookBtn");
 const dialog = document.querySelector("#showBookDialog");
