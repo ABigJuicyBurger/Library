@@ -70,7 +70,7 @@ function BookPrototype() {
     this.bookCard = bookCard;
 
     container.appendChild(bookCard);
-  }
+  };
 }
 
 function Book(title, author, pages, read) {
