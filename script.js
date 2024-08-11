@@ -14,6 +14,18 @@ const bookRead = document.querySelector("#read");
 
 const saveBook = document.querySelector("#saveBook");
 
+function BookPrototype() {
+  this.setIndex = function (index) {
+    this.bookCard.dataset.index = index
+  };
+  this.toggleRead = function () { this.read = !this.read;
+    return this.read;};
+    this.addBooktoLibrary = function () {
+      myLibrary.push(this);
+    }
+  
+}
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -77,20 +89,22 @@ function Book(title, author, pages, read) {
   console.log(this.info());
 }
 
+Book.prototype = new BookPrototype();
+
 // Book.prototype.display = function (container)
 
-Book.prototype.addBooktoLibrary = function () {
-  myLibrary.push(this);
-};
+// Book.prototype.addBooktoLibrary = function () {
+//   myLibrary.push(this);
+// };
 
-Book.prototype.setIndex = function (index) {
-  this.bookCard.dataset.index = index;
-};
+// Book.prototype.setIndex = function (index) {
+//   this.bookCard.dataset.index = index;
+// };
 
-Book.prototype.toggleRead = function () {
-  this.read = !this.read;
-  return this.read;
-};
+// Book.prototype.toggleRead = function () {
+//   this.read = !this.read;
+//   return this.read;
+// };
 
 addBookBtn.addEventListener("click", () => {
   dialog.showModal();
