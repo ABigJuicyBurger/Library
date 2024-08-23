@@ -1,6 +1,7 @@
 const myLibrary = [];
 
 // Added comment to create pull request
+// Added comment to continue pull request
 
 const addBookBtn = document.querySelector("#addBookBtn");
 const dialog = document.querySelector("#showBookDialog");
@@ -13,19 +14,17 @@ const bookRead = document.querySelector("#read");
 
 const saveBook = document.querySelector("#saveBook");
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.info = function () {
-    if (read === true) {
-      return `${title} by ${author}, ${pages} pages, read`;
-    } else {
-      return `${title} by ${author}, ${pages} pages, not read yet`;
-    }
+function BookPrototype() {
+  this.setIndex = function (index) {
+    this.bookCard.dataset.index = index;
   };
-
+  this.toggleRead = function () {
+    this.read = !this.read;
+    return this.read;
+  };
+  this.addBooktoLibrary = function () {
+    myLibrary.push(this);
+  };
   this.display = function (container) {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
@@ -72,24 +71,85 @@ function Book(title, author, pages, read) {
 
     container.appendChild(bookCard);
   };
+}
+
+function Book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+  this.info = function () {
+    if (read === true) {
+      return `${title} by ${author}, ${pages} pages, read`;
+    } else {
+      return `${title} by ${author}, ${pages} pages, not read yet`;
+    }
+  };
 
   console.log(this.info());
 }
 
-// Book.prototype.display = function (container)
+Book.prototype = new BookPrototype();
 
-Book.prototype.addBooktoLibrary = function () {
-  myLibrary.push(this);
-};
+// Book.prototype.display = function (container) {
+//   const bookCard = document.createElement("div");
+//     bookCard.classList.add("book-card");
 
-Book.prototype.setIndex = function (index) {
-  this.bookCard.dataset.index = index;
-};
+//     const titleP = document.createElement("p");
+//     titleP.textContent = `Title: ${this.title}`;
 
-Book.prototype.toggleRead = function () {
-  this.read = !this.read;
-  return this.read;
-};
+//     const authorP = document.createElement("p");
+//     authorP.textContent = `Author: ${this.author}`;
+
+//     const pagesP = document.createElement("p");
+//     pagesP.textContent = `Pages: ${this.pages}`;
+
+//     const readP = document.createElement("button");
+//     readP.classList.add("read-button");
+//     readP.textContent = `Read: ${this.read ? "Yes" : "No"}`;
+
+//     readP.addEventListener("click", () => {
+//       const newReadStatus = this.toggleRead();
+//       readP.textContent = `Read: ${newReadStatus ? "Yes" : "No"}`;
+//       readP.classList.toggle("read-button");
+//     });
+
+//     const removeBookBtn = document.createElement("button");
+//     removeBookBtn.classList.add("remove-button");
+//     removeBookBtn.textContent = "Remove";
+
+//     removeBookBtn.addEventListener("click", () => {
+//       if (bookCard) {
+//         const index = bookCard.dataset.index;
+//         myLibrary.splice(index, 1);
+//         container.remove;
+//         displayBooks();
+//       }
+//     });
+
+//     bookCard.appendChild(titleP);
+//     bookCard.appendChild(authorP);
+//     bookCard.appendChild(pagesP);
+//     bookCard.appendChild(readP);
+//     bookCard.appendChild(removeBookBtn);
+
+//     this.bookCard = bookCard;
+
+//     container.appendChild(bookCard);
+//   };
+
+// Book.prototype.addBooktoLibrary = function () {
+//   myLibrary.push(this);
+// };
+
+// Book.prototype.setIndex = function (index) {
+//   this.bookCard.dataset.index = index;
+// };
+
+// Book.prototype.toggleRead = function () {
+//   this.read = !this.read;
+//   return this.read;
+// };
 
 addBookBtn.addEventListener("click", () => {
   dialog.showModal();

@@ -2,8 +2,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  background-color: #E0E0E0;
+  font-family: "Times New Roman", Times, serif;
+  background-color: #e0e0e0;
   margin: 0;
   padding: 20px;
 }
@@ -18,9 +18,10 @@ main {
   justify-content: center;
 }
 
-header, footer {
-  background-color: #5DADE2;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+header,
+footer {
+  background-color: #5dade2;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -38,10 +39,12 @@ dialog::backdrop {
 
 @keyframes slideIn {
   from {
-    transform: translateY(-50px); opacity: 0;
+    transform: translateY(-50px);
+    opacity: 0;
   }
   to {
-    transform: translateY(0); opacity: 1;
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -64,7 +67,7 @@ dialog input:focus {
 
 dialog {
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 #saveBook {
@@ -73,7 +76,7 @@ dialog {
 
 .book-card {
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   border: none;
   padding: 20px;
   margin: 10px;
@@ -81,7 +84,7 @@ dialog {
   border-radius: 10px;
   text-align: center;
   background-color: white;
-  box-shadow: 0 25px 10px rgba(41, 111, 23, 0.1)
+  box-shadow: 0 25px 10px rgba(41, 111, 23, 0.1);
 }
 
 .book-card :hover {
