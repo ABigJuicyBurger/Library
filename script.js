@@ -1,8 +1,5 @@
 const myLibrary = [];
 
-// Added comment to create pull request
-// Added comment to continue pull request
-
 const addBookBtn = document.querySelector("#addBookBtn");
 const dialog = document.querySelector("#showBookDialog");
 const bookList = document.querySelector("#bookList");
@@ -90,66 +87,6 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype = new BookPrototype();
-
-// Book.prototype.display = function (container) {
-//   const bookCard = document.createElement("div");
-//     bookCard.classList.add("book-card");
-
-//     const titleP = document.createElement("p");
-//     titleP.textContent = `Title: ${this.title}`;
-
-//     const authorP = document.createElement("p");
-//     authorP.textContent = `Author: ${this.author}`;
-
-//     const pagesP = document.createElement("p");
-//     pagesP.textContent = `Pages: ${this.pages}`;
-
-//     const readP = document.createElement("button");
-//     readP.classList.add("read-button");
-//     readP.textContent = `Read: ${this.read ? "Yes" : "No"}`;
-
-//     readP.addEventListener("click", () => {
-//       const newReadStatus = this.toggleRead();
-//       readP.textContent = `Read: ${newReadStatus ? "Yes" : "No"}`;
-//       readP.classList.toggle("read-button");
-//     });
-
-//     const removeBookBtn = document.createElement("button");
-//     removeBookBtn.classList.add("remove-button");
-//     removeBookBtn.textContent = "Remove";
-
-//     removeBookBtn.addEventListener("click", () => {
-//       if (bookCard) {
-//         const index = bookCard.dataset.index;
-//         myLibrary.splice(index, 1);
-//         container.remove;
-//         displayBooks();
-//       }
-//     });
-
-//     bookCard.appendChild(titleP);
-//     bookCard.appendChild(authorP);
-//     bookCard.appendChild(pagesP);
-//     bookCard.appendChild(readP);
-//     bookCard.appendChild(removeBookBtn);
-
-//     this.bookCard = bookCard;
-
-//     container.appendChild(bookCard);
-//   };
-
-// Book.prototype.addBooktoLibrary = function () {
-//   myLibrary.push(this);
-// };
-
-// Book.prototype.setIndex = function (index) {
-//   this.bookCard.dataset.index = index;
-// };
-
-// Book.prototype.toggleRead = function () {
-//   this.read = !this.read;
-//   return this.read;
-// };
 
 addBookBtn.addEventListener("click", () => {
   dialog.showModal();
