@@ -12,7 +12,7 @@ class Book {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.library = library
+    this.library = library;
   }
 
   info() {
@@ -80,9 +80,9 @@ class Book {
     removeBookBtn.addEventListener("click", () => {
       if (bookCard) {
         const index = bookCard.dataset.index;
-        this.myLibrary.splice(index, 1);
+        this.library.myLibrary.splice(index, 1);
         container.remove;
-        displayBooks();
+        library.displayBooks();
       }
     });
     bookCard.appendChild(titleP);
