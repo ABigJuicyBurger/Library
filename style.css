@@ -2,8 +2,9 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: "Times New Roman", Times, serif;
-  background-color: #e0e0e0;
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
   margin: 0;
   padding: 20px;
 }
@@ -13,9 +14,10 @@ main {
 }
 
 #bookList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  justify-items: center;
+  gap: 20px;
 }
 
 header,
@@ -28,6 +30,7 @@ header {
   display: flex;
   justify-content: space-between;
   color: white;
+  background-color: #1e3a8a;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -66,8 +69,10 @@ dialog input:focus {
 }
 
 dialog {
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background-color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 #saveBook {
@@ -83,8 +88,9 @@ dialog {
   width: 200px;
   border-radius: 10px;
   text-align: center;
-  background-color: white;
-  box-shadow: 0 25px 10px rgba(41, 111, 23, 0.1);
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .book-card :hover {
@@ -96,7 +102,7 @@ button {
   border-radius: 5px;
   padding: 10px;
   border: none;
-  background-color: #2ecc71;
+  background-color: #3b82f6;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -119,6 +125,26 @@ footer {
   color: white;
   padding: 20px;
   text-align: center;
+}
+
+input {
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  padding: 8px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+input:invalid {
+  border: 2px solid #e74c3c;
+}
+
+input:invalid:required {
+  border: 2px solid #e74c3c;
 }
 
 /* Implement a color scheme inspired by popular book covers or libraries.

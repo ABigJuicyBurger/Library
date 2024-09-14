@@ -1,13 +1,14 @@
-const bookTitle = document.querySelector("#title");
+const bookTitleInput = document.querySelector("#title"); // what if element changes?
 const bookAuthor = document.querySelector("#author");
 const bookPages = document.querySelector("#pages");
-const bookRead = document.querySelector("#read");
+const bookRead =
+  document.querySelector("#read"); /* change immediately with fn f2 */
 
 // Refactor code to use class instead of prototype
 
 // Refactoring Book from constructor to a class with a  constructor and methods
 class Book {
-  constructor(title, author, pages, read) {
+  constructor(title, author, pages, read, library) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -16,11 +17,13 @@ class Book {
   }
 
   info() {
-    if (this.read === read) {
-      return `${title} by ${author}, ${pages} pages, read`;
-    } else {
-      return `${title} by ${author}, ${pages} pages, not read yet`;
-    }
+    // if (this.read === read) {
+    //   return `${title} by ${author}, ${pages} pages, read`;
+    // } else {
+    //   return `${title} by ${author}, ${pages} pages, not read yet`;
+    // }
+    const cover = `${this.title} by ${this.author}, ${this.pages} pages`; /* this is a statemtn */ // the return is the statement (full line of code), expression is couple words in the code, so in ternary is an experession and each part of ternary is also an expressioon
+    return this.read === true ? cover + `read` : cover + `not read yet`; // DRY Code fixed, this is abstracted or deduplicated
   }
 
   setIndex(index) {
@@ -41,6 +44,7 @@ class Book {
   }
 
   addBooktoLibrary() {
+    /* this is currently inside a book; the book has the power to add itself to a library, but which library? */
     this.library.myLibrary.push(this);
   }
 
@@ -48,7 +52,7 @@ class Book {
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
 
-    const titleP = document.createElement("p");
+    const titleP = document.createElement("p"); // Here it can be changed to just template literal + HTML
     titleP.textContent = `Title: ${this.title}`;
 
     const authorP = document.createElement("p");
@@ -82,7 +86,7 @@ class Book {
         const index = bookCard.dataset.index;
         this.library.myLibrary.splice(index, 1);
         container.remove;
-        library.displayBooks();
+        this.library.displayBooks();
       }
     });
     bookCard.appendChild(titleP);
@@ -97,9 +101,11 @@ class Book {
   }
 }
 
+// make each class separate js files, scriptclass doesnt tell anyone working on code much
+
 class Library {
   constructor() {
-    this.myLibrary = [];
+    this.myLibrary = []; // name change, can be books or bookshelf in order to change name confusion and a way to improve readability
     console.log(this.myLibrary);
 
     this.addBookBtn = document.querySelector("#addBookBtn");
@@ -113,6 +119,16 @@ class Library {
   initEventListeners() {
     this.addBookBtn.addEventListener("click", () => this.showDialog());
     this.saveBook.addEventListener("click", (e) => this.handleSaveBook(e));
+
+    bookTitleInput.addEventListener("input", () => {
+      bookTitleInput.setCustomValidity("");
+    });
+    bookAuthor.addEventListener("input", () => {
+      bookAuthor.setCustomValidity("");
+    });
+    bookPages.addEventListener("input", () => {
+      bookPages.setCustomValidity("");
+    });
   }
 
   showDialog() {
@@ -120,35 +136,80 @@ class Library {
     console.log("add book button clicked");
   }
 
-  handleSaveBook(e) {
+  handleSaveBook(
+    e /* can pass book info as argument to keep code modular; fancy term is dependency injection*/
+  ) {
+    /* can change to arrow fnxn (which dont have own scope), which will take this to the library scope*/
     e.preventDefault();
+
+    const title = bookTitleInput;
+    const author = bookAuthor;
+    const pages = bookPages;
+    const read = bookRead;
+
+    let isValid = true;
+    if (!title.value.trim()) {
+      title.setCustomValidity("Title is required");
+      isValid = false;
+    } else {
+      title.setCustomValidity("");
+    }
+
+    if (!author.value.trim()) {
+      author.setCustomValidity("Author is required");
+      isValid = false;
+    } else {
+      author.setCustomValidity("");
+    }
+
+    if (!pages.value) {
+      pages.setCustomValidity("Number of pages is required");
+      isValid = false;
+    } else if (isNaN(pages.value) || pages.value <= 0) {
+      pages.setCustomValidity("Pages must be a positive number");
+      isValid = false;
+    } else {
+      pages.setCustomValidity("");
+    }
+
+    if (!isValid) {
+      // Trigger the browser's default field error display
+      title.reportValidity();
+      author.reportValidity();
+      pages.reportValidity();
+      return;
+    }
+
     const newBook = new Book(
-      bookTitle.value,
-      bookAuthor.value,
-      bookPages.value,
-      bookRead.checked,
-      this
+      /* here a new book is created from user input, and we're grabbing data from html elements directly*/ title.value.trim(),
+      author.value.trim(),
+      parseInt(pages.value),
+      read.checked,
+      this /* means the local scope, inside this fnxn */
     );
-    newBook.addBooktoLibrary();
+    newBook.addBooktoLibrary(); /* think real world; does book add itself to library to does library add books to itself, this may be complicated with multiple libraries */
     this.displayBooks();
     this.dialog.close();
     this.resetDialogFields();
   }
 
   displayBooks() {
-    bookList.textContent = "";
+    this.bookList.textContent = "";
     this.myLibrary.forEach((book, index) => {
-      book.display(bookList);
+      book.display(this.bookList);
       book.setIndex(index);
     });
   }
 
   resetDialogFields() {
-    title.value = "";
-    author.value = "";
-    pages.value = "";
-    read.checked = false;
+    bookTitleInput.value = "";
+    bookAuthor.value = "";
+    bookPages.value = "";
+    bookRead.checked = false;
   }
 }
 
-const library = new Library();
+const library1 = new Library();
+// const library2
+
+// if you want a more modular book, pass library in so you can make separate libraries
