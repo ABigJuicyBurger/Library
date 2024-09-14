@@ -119,6 +119,16 @@ class Library {
   initEventListeners() {
     this.addBookBtn.addEventListener("click", () => this.showDialog());
     this.saveBook.addEventListener("click", (e) => this.handleSaveBook(e));
+
+    bookTitleInput.addEventListener("input", () => {
+      bookTitleInput.setCustomValidity("");
+    });
+    bookAuthor.addEventListener("input", () => {
+      bookAuthor.setCustomValidity("");
+    });
+    bookPages.addEventListener("input", () => {
+      bookPages.setCustomValidity("");
+    });
   }
 
   showDialog() {
@@ -131,11 +141,50 @@ class Library {
   ) {
     /* can change to arrow fnxn (which dont have own scope), which will take this to the library scope*/
     e.preventDefault();
+
+    const title = bookTitleInput;
+    const author = bookAuthor;
+    const pages = bookPages;
+    const read = bookRead;
+
+    let isValid = true;
+    if (!title.value.trim()) {
+      title.setCustomValidity("Title is required");
+      isValid = false;
+    } else {
+      title.setCustomValidity("");
+    }
+
+    if (!author.value.trim()) {
+      author.setCustomValidity("Author is required");
+      isValid = false;
+    } else {
+      author.setCustomValidity("");
+    }
+
+    if (!pages.value) {
+      pages.setCustomValidity("Number of pages is required");
+      isValid = false;
+    } else if (isNaN(pages.value) || pages.value <= 0) {
+      pages.setCustomValidity("Pages must be a positive number");
+      isValid = false;
+    } else {
+      pages.setCustomValidity("");
+    }
+
+    if (!isValid) {
+      // Trigger the browser's default field error display
+      title.reportValidity();
+      author.reportValidity();
+      pages.reportValidity();
+      return;
+    }
+
     const newBook = new Book(
-      /* here a new book is created from user input, and we're grabbing data from html elements directly*/ bookTitleInput.value,
-      bookAuthor.value,
-      bookPages.value,
-      bookRead.checked,
+      /* here a new book is created from user input, and we're grabbing data from html elements directly*/ title.value.trim(),
+      author.value.trim(),
+      parseInt(pages.value),
+      read.checked,
       this /* means the local scope, inside this fnxn */
     );
     newBook.addBooktoLibrary(); /* think real world; does book add itself to library to does library add books to itself, this may be complicated with multiple libraries */
